@@ -226,6 +226,119 @@
           }
         }
       }
+    },
+    "red": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/red",
+      "sourceRoot": "apps/red/src",
+      "prefix": "red",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/red",
+            "index": "apps/red/src/index.html",
+            "main": "apps/red/src/main.ts",
+            "polyfills": "apps/red/src/polyfills.ts",
+            "tsConfig": "apps/red/tsconfig.app.json",
+            "aot": true,
+            "assets": ["apps/red/src/favicon.ico", "apps/red/src/assets"],
+            "styles": ["apps/red/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/red/src/environments/environment.ts",
+                  "with": "apps/red/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "red:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "red:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "red:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/red/src/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/red/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "red-e2e": {
+      "root": "apps/red-e2e",
+      "sourceRoot": "apps/red-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/red-e2e/cypress.json",
+            "tsConfig": "apps/red-e2e/tsconfig.e2e.json",
+            "devServerTarget": "red:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "red:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/red-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
     }
   },
   "cli": {

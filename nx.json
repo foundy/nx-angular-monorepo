@@ -36,6 +36,13 @@
     "green-e2e": {
       "tags": [],
       "implicitDependencies": ["green"]
+    },
+    "red": {
+      "tags": ["scope:red"]
+    },
+    "red-e2e": {
+      "tags": [],
+      "implicitDependencies": ["red"]
     }
   }
 }

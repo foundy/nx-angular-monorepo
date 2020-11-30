@@ -1,3 +1,7 @@
 module.exports = {
-  projects: ['<rootDir>/apps/blue', '<rootDir>/apps/green'],
+  projects: [
+    '<rootDir>/apps/blue',
+    '<rootDir>/apps/green',
+    '<rootDir>/apps/red',
+  ],
 };
