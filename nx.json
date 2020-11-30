@@ -43,6 +43,13 @@
     "red-e2e": {
       "tags": [],
       "implicitDependencies": ["red"]
+    },
+    "orange": {
+      "tags": ["scope:orange"]
+    },
+    "orange-e2e": {
+      "tags": [],
+      "implicitDependencies": ["orange"]
     }
   }
 }

@@ -339,6 +339,119 @@
           }
         }
       }
+    },
+    "orange": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/orange",
+      "sourceRoot": "apps/orange/src",
+      "prefix": "orange",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/orange",
+            "index": "apps/orange/src/index.html",
+            "main": "apps/orange/src/main.ts",
+            "polyfills": "apps/orange/src/polyfills.ts",
+            "tsConfig": "apps/orange/tsconfig.app.json",
+            "aot": true,
+            "assets": ["apps/orange/src/favicon.ico", "apps/orange/src/assets"],
+            "styles": ["apps/orange/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/orange/src/environments/environment.ts",
+                  "with": "apps/orange/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "orange:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "orange:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "orange:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/orange/src/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/orange/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "orange-e2e": {
+      "root": "apps/orange-e2e",
+      "sourceRoot": "apps/orange-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/orange-e2e/cypress.json",
+            "tsConfig": "apps/orange-e2e/tsconfig.e2e.json",
+            "devServerTarget": "orange:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "orange:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/orange-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
     }
   },
   "cli": {
