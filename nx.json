@@ -22,5 +22,13 @@
       }
     }
   },
-  "projects": {}
+  "projects": {
+    "blue": {
+      "tags": ["scope:blue"]
+    },
+    "blue-e2e": {
+      "tags": [],
+      "implicitDependencies": ["blue"]
+    }
+  }
 }
