@@ -4,5 +4,6 @@ module.exports = {
     '<rootDir>/apps/green',
     '<rootDir>/apps/red',
     '<rootDir>/apps/orange',
+    '<rootDir>/libs/shared',
   ],
 };

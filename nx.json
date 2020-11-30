@@ -50,6 +50,9 @@
     "orange-e2e": {
       "tags": [],
       "implicitDependencies": ["orange"]
+    },
+    "shared": {
+      "tags": ["scope:shared", "type:shared"]
     }
   }
 }
